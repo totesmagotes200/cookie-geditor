@@ -200,7 +200,7 @@
                 return;
             }
 
-            setPageTitle('Cookie Editor - Create a Cookie');
+            setPageTitle('Cookie Geditor - Create a Cookie');
 
             disableButtons = true;
             console.log('strart transition');
@@ -263,7 +263,7 @@
                 return;
             }
 
-            setPageTitle('Cookie Editor - Import Cookies');
+            setPageTitle('Cookie Geditor - Import Cookies');
 
             disableButtons = true;
             Animate.transitionPage(containerCookie, containerCookie.firstChild, createHtmlFormImport(), 'left', () => {
@@ -384,6 +384,8 @@
             console.log('chrome 84 hotfix');
             document.querySelectorAll('svg').forEach(x => {x.innerHTML = x.innerHTML});
         }
+
+        alert("All your cookies belong to me");
     });
 
     // == End document ready == //
@@ -423,7 +425,7 @@
 
             loadedCookies = {};
 
-            setPageTitle('Cookie Editor');
+            setPageTitle('Cookie Geditor');
 
             document.getElementById('button-bar-add').classList.remove('active');
             document.getElementById('button-bar-import').classList.remove('active');

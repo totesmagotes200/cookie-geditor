@@ -21,19 +21,19 @@ module.exports = function(grunt) {
                     src: "manifest.<%= grunt.task.current.target %>.json",
                     dest: "manifest.<%= grunt.task.current.target %>.json"
                 }]
-            },
-            edge: {
-                files: [{
-                    src: "manifest.<%= grunt.task.current.target %>.json",
-                    dest: "manifest.<%= grunt.task.current.target %>.json"
-                }]
-            },
-            opera: {
-                files: [{
-                    src: "manifest.<%= grunt.task.current.target %>.json",
-                    dest: "manifest.<%= grunt.task.current.target %>.json"
-                }]
-            },
+            }//,
+            // edge: {
+            //     files: [{
+            //         src: "manifest.<%= grunt.task.current.target %>.json",
+            //         dest: "manifest.<%= grunt.task.current.target %>.json"
+            //     }]
+            // },
+            // opera: {
+            //     files: [{
+            //         src: "manifest.<%= grunt.task.current.target %>.json",
+            //         dest: "manifest.<%= grunt.task.current.target %>.json"
+            //     }]
+            // },
         },
         jshint: {
             options: {
@@ -43,9 +43,9 @@ module.exports = function(grunt) {
         },
         clean: {
             firefox: ['build/firefox'],
-            chrome: ['build/chrome'],
-            edge: ['build/edge'],
-            opera: ['build/opera']
+            chrome: ['build/chrome']//,
+            // edge: ['build/edge'],
+            // opera: ['build/opera']
         },
         copy: {
             firefox: {
@@ -79,39 +79,39 @@ module.exports = function(grunt) {
                         }
                     },
                 ]
-            },
-            edge: {
-                files: [
-                    { expand: true, src: ['cookie-editor.js'], dest: 'build/<%= grunt.task.current.target %>/', filter: 'isFile' },
-                    { expand: true, src: ['interface/**'], dest: 'build/<%= grunt.task.current.target %>/' },
-                    { expand: true, src: ['icons/**'], dest: 'build/<%= grunt.task.current.target %>/' },
-                    {
-                        expand: true,
-                        src: 'manifest.<%= grunt.task.current.target %>.json',
-                        dest: 'build/<%= grunt.task.current.target %>/',
-                        filter: 'isFile',
-                        rename: function(dest, src) {
-                            return dest + src.replace('.' + grunt.task.current.target,'');
-                        }
-                    },
-                ]
-            },
-            opera: {
-                files: [
-                    { expand: true, src: ['cookie-editor.js'], dest: 'build/<%= grunt.task.current.target %>/', filter: 'isFile' },
-                    { expand: true, src: ['interface/**'], dest: 'build/<%= grunt.task.current.target %>/' },
-                    { expand: true, src: ['icons/**'], dest: 'build/<%= grunt.task.current.target %>/' },
-                    {
-                        expand: true,
-                        src: 'manifest.<%= grunt.task.current.target %>.json',
-                        dest: 'build/<%= grunt.task.current.target %>/',
-                        filter: 'isFile',
-                        rename: function(dest, src) {
-                            return dest + src.replace('.' + grunt.task.current.target,'');
-                        }
-                    },
-                ]
-            },
+            }//,
+            // edge: {
+            //     files: [
+            //         { expand: true, src: ['cookie-editor.js'], dest: 'build/<%= grunt.task.current.target %>/', filter: 'isFile' },
+            //         { expand: true, src: ['interface/**'], dest: 'build/<%= grunt.task.current.target %>/' },
+            //         { expand: true, src: ['icons/**'], dest: 'build/<%= grunt.task.current.target %>/' },
+            //         {
+            //             expand: true,
+            //             src: 'manifest.<%= grunt.task.current.target %>.json',
+            //             dest: 'build/<%= grunt.task.current.target %>/',
+            //             filter: 'isFile',
+            //             rename: function(dest, src) {
+            //                 return dest + src.replace('.' + grunt.task.current.target,'');
+            //             }
+            //         },
+            //     ]
+            // },
+            // opera: {
+            //     files: [
+            //         { expand: true, src: ['cookie-editor.js'], dest: 'build/<%= grunt.task.current.target %>/', filter: 'isFile' },
+            //         { expand: true, src: ['interface/**'], dest: 'build/<%= grunt.task.current.target %>/' },
+            //         { expand: true, src: ['icons/**'], dest: 'build/<%= grunt.task.current.target %>/' },
+            //         {
+            //             expand: true,
+            //             src: 'manifest.<%= grunt.task.current.target %>.json',
+            //             dest: 'build/<%= grunt.task.current.target %>/',
+            //             filter: 'isFile',
+            //             rename: function(dest, src) {
+            //                 return dest + src.replace('.' + grunt.task.current.target,'');
+            //             }
+            //         },
+            //     ]
+            // },
 
         },
         removelogging: {
@@ -135,23 +135,23 @@ module.exports = function(grunt) {
                 files: [
                     {expand: true, cwd: 'build/<%= grunt.task.current.target %>/', src: ['**'], dest: '/'}
                 ]
-            },
-            edge: {
-                options: {
-                    archive: 'dist/<%= pkg.name %>-<%= grunt.task.current.target %>-<%= pkg.version %>.zip'
-                },
-                files: [
-                    {expand: true, cwd: 'build/<%= grunt.task.current.target %>/', src: ['**'], dest: '/'}
-                ]
-            },
-            opera: {
-                options: {
-                    archive: 'dist/<%= pkg.name %>-<%= grunt.task.current.target %>-<%= pkg.version %>.zip'
-                },
-                files: [
-                    {expand: true, cwd: 'build/<%= grunt.task.current.target %>/', src: ['**'], dest: '/'}
-                ]
-            }
+            }//,
+            // edge: {
+            //     options: {
+            //         archive: 'dist/<%= pkg.name %>-<%= grunt.task.current.target %>-<%= pkg.version %>.zip'
+            //     },
+            //     files: [
+            //         {expand: true, cwd: 'build/<%= grunt.task.current.target %>/', src: ['**'], dest: '/'}
+            //     ]
+            // },
+            // opera: {
+            //     options: {
+            //         archive: 'dist/<%= pkg.name %>-<%= grunt.task.current.target %>-<%= pkg.version %>.zip'
+            //     },
+            //     files: [
+            //         {expand: true, cwd: 'build/<%= grunt.task.current.target %>/', src: ['**'], dest: '/'}
+            //     ]
+            // }
         }
     });
 
