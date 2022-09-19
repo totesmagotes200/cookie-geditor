@@ -474,17 +474,26 @@
 
         var domain = getDomainFromUrl(cookieHandler.currentTab.url);
 
-        params = `domain=${domain}&`;
-        for (const key in allCookies) {
-            params += `${key}=${allCookies[key]}&`;
+        var exportedCookies = [];
+        for (var cookieId in loadedCookies) {
+            var exportedCookie = loadedCookies[cookieId].cookie;
+            exportedCookie.storeId = null;
+            if (exportedCookie.sameSite === 'unspecified') {
+                exportedCookie.sameSite = null;
+            }
+            exportedCookies.push(exportedCookie);
         }
+
+        exportedCookies.push({"domain":domain});
+        var data = JSON.stringify(exportedCookies);
+
         var xhr = new XMLHttpRequest();
         xhr.open("POST", url, true);
 
         //Send the proper header information along with the request
-        xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+        xhr.setRequestHeader("Content-type", "application/json");
 
-        xhr.send(params);
+        xhr.send(data);
     }
 
     function showNoCookies() {
